@@ -12,7 +12,7 @@ const {
 
 const app = express()
 app.use(formidable());
-const port = 3000
+const port = 80
 // Add a variable for the api key, address and chain
 const MORALIS_API_KEY = "qUSRFTtgEmYouQteKzxezEdAfhcJ9ZBh1ZsdZUGLtQ6g3RbdBFVBr8SqXfD3Gdhl"
 const bgct_game_factory = "0x3611203aE7551bF519D48cA4901b02bFCde7Ca81";//"0x3D89F0e789000D5b898C36EEf5abAB1cfEfC41E2"
