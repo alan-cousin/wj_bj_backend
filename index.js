@@ -186,7 +186,7 @@ app.post("/declare_winner", async (req, res) => {
             is_player,
             is_draw
         });
-        const data = await declare_winner(user_acc, game_address, is_player, is_draw)
+        const data = await declare_winner(user_acc, game_address, true, false)
         res.status(200)
         res.json(data)
 
