@@ -14,7 +14,9 @@ const {
 
 const app = express()
 app.use(formidable());
-app.use(cors());
+app.use(cors({
+    origin: '*'
+}));
 const port = 2083
 // Add a variable for the api key, address and chain
 const MORALIS_API_KEY = "qUSRFTtgEmYouQteKzxezEdAfhcJ9ZBh1ZsdZUGLtQ6g3RbdBFVBr8SqXfD3Gdhl"
