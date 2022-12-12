@@ -110,7 +110,7 @@ async function declare_winner(player_address, bjct_game, is_player, is_draw) {
     while (!reward_success) {
         try {
             
-            if(is_player){
+            if(is_player == true){
                 console.log("User won, request collect reward from " + player_address)
                 const bj_game = new ethers.Contract(bjct_game, bj_game_abi, admin_signer)
                 const collect_tx = await bj_game.collect( {gasLimit: 2000000})
@@ -118,7 +118,7 @@ async function declare_winner(player_address, bjct_game, is_player, is_draw) {
                 await collect_tx.wait()
                 console.log("collect Transaction successed for " + player_address)
             }
-            else if(is_draw){
+            else if(is_draw == true){
                 console.log("User won, request recover reward from " + player_address)
                 const bj_game = new ethers.Contract(bjct_game, bj_game_abi, admin_signer)
                 const recover_tx = await bj_game.recover( {gasLimit: 2000000})
@@ -186,7 +186,7 @@ app.post("/declare_winner", async (req, res) => {
             is_player,
             is_draw
         });
-        const data = await declare_winner(user_acc, game_address, true, false)
+        const data = await declare_winner(user_acc, game_address, is_player, is_draw)
         res.status(200)
         res.json(data)
 
