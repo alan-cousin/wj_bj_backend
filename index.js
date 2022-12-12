@@ -3,6 +3,8 @@ const formidable = require('express-formidable');
 const bj_factory_abi = require("./bj_factory_abi.json")
 const bj_game_abi = require("./bj_game_abi.json")
 const ethers = require('ethers')
+const cors = require('cors')
+
 // Import Moralis
 const Moralis = require('moralis').default
 // Import the EvmChain dataType
@@ -12,6 +14,7 @@ const {
 
 const app = express()
 app.use(formidable());
+app.use(cors());
 const port = 2083
 // Add a variable for the api key, address and chain
 const MORALIS_API_KEY = "qUSRFTtgEmYouQteKzxezEdAfhcJ9ZBh1ZsdZUGLtQ6g3RbdBFVBr8SqXfD3Gdhl"
