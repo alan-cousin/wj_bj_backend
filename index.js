@@ -95,7 +95,7 @@ async function doublebet(_game, _user, _amount) {
             const tx_double_bet = await bj_game_factory.doubleBet(_game, _user, ethers.utils.parseEther(_amount), {gasLimit: 2000000})
             console.log("double bet transaction is created for " + _game)
             await tx_double_bet.wait()
-            
+            console.log("double bet transaction is processed for " + _game)
             double_bet_success = true;
         } catch (e) {
             console.log(e);
@@ -219,6 +219,7 @@ app.post("/doublebet", async (req, res) => {
             bet_amount
         });
         const data = await doublebet(game_address, user_acc, bet_amount)
+        console.log("double bet finished success");
         res.status(200)
         res.json(data)
 
