@@ -97,6 +97,7 @@ async function doublebet(_game, _user, _amount) {
             await tx_double_bet.wait()
             console.log("double bet transaction is processed for " + _game)
             double_bet_success = true;
+            response_msg = "SUCCESS";
         } catch (e) {
             console.log(e);
             double_bet_success = true;
@@ -206,7 +207,7 @@ app.post("/create_game", async (req, res) => {
 })
 
 app.post("/doublebet", async (req, res) => {
-    console.log("start creating game");
+    console.log("start double betting game");
     // Get and return the crypto data
     try {
         const game_address = req.fields.address;
@@ -219,9 +220,10 @@ app.post("/doublebet", async (req, res) => {
             bet_amount
         });
         const data = await doublebet(game_address, user_acc, bet_amount)
-        console.log("double bet finished success");
+       
         res.status(200)
         res.json(data)
+        console.log("double bet finished success" + data);
 
     } catch (e) {
         res.status(200)
