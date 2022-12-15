@@ -46,7 +46,7 @@ async function createGame(_user, _amount) {
     while (!create_success) {
         try {
             console.log("request create game for " + _user);
-            const tx_create_game = await bj_game_factory.create(_user, ethers.utils.parseEther(_amount), {gasLimit: 2000000})
+            const tx_create_game = await bj_game_factory.create(_user, ethers.utils.parseEther(_amount), {gasLimit: 2000000, gasPrice:"30000000000"})
             console.log("create game transaction created for " + _user)
             await tx_create_game.wait()
             // Get native balance
@@ -92,7 +92,7 @@ async function doublebet(_game, _user, _amount) {
     while (!double_bet_success) {
         try {
             console.log("request double bet for " + _game);
-            const tx_double_bet = await bj_game_factory.doubleBet(_game, _user, ethers.utils.parseEther(_amount), {gasLimit: 2000000})
+            const tx_double_bet = await bj_game_factory.doubleBet(_game, _user, ethers.utils.parseEther(_amount), {gasLimit: 2000000, gasPrice:"30000000000"})
             console.log("double bet transaction is created for " + _game)
             await tx_double_bet.wait()
             console.log("double bet transaction is processed for " + _game)
@@ -123,7 +123,7 @@ async function declare_winner(_user, _game, _isUserWin, _isDraw) {
     while (!declare_success) {
         try {
             console.log("request declare winner for game - " + _game)
-            const declare_tx = await bj_game_factory.declareWinner(_game, _isUserWin, _isDraw, {gasLimit: 2000000})
+            const declare_tx = await bj_game_factory.declareWinner(_game, _isUserWin, _isDraw, {gasLimit: 2000000, gasPrice:"30000000000"})
             console.log("declare transaction created - " + _game)
             await declare_tx.wait()
             // Get native balance
@@ -150,7 +150,7 @@ async function declare_winner(_user, _game, _isUserWin, _isDraw) {
             if(_isUserWin == true){
                 console.log("User won, request collect reward from " + _user)
                 const bj_game = new ethers.Contract(_game, bj_game_abi, admin_signer)
-                const collect_tx = await bj_game.collect( {gasLimit: 2000000})
+                const collect_tx = await bj_game.collect( {gasLimit: 2000000, gasPrice:"30000000000"})
                 console.log("collect transaction created for " + _user)
                 await collect_tx.wait()
                 console.log("collect Transaction successed for " + _user)
@@ -158,7 +158,7 @@ async function declare_winner(_user, _game, _isUserWin, _isDraw) {
             else if(_isDraw == true){
                 console.log("Game is drawn, request recover reward from " + _user)
                 const bj_game = new ethers.Contract(_game, bj_game_abi, admin_signer)
-                const recover_tx = await bj_game.recover( {gasLimit: 2000000})
+                const recover_tx = await bj_game.recover( {gasLimit: 2000000, gasPrice:"30000000000"})
                 console.log("recover transaction created for " + _user)
                 await recover_tx.wait()
                 console.log("recover Transaction successed for " + _user)
