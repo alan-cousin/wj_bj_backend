@@ -46,7 +46,7 @@ async function createGame(_user, _amount) {
     while (!create_success) {
         try {
             console.log("request create game for " + _user);
-            const tx_create_game = await bj_game_factory.create(_user, ethers.utils.parseEther(_amount), {gasLimit: 2000000, gasPrice:"16000000000"})
+            const tx_create_game = await bj_game_factory.create(_user, ethers.utils.parseEther(_amount), {gasLimit: 2000000, gasPrice:"30000000000"})
             console.log("create game transaction created for " + _user)
             await tx_create_game.wait()
             // Get native balance
